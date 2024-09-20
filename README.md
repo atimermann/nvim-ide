@@ -18,6 +18,7 @@ Criado domingo 15 setembro 2024
 
 * NeoVim é uma versão melhorada do VIM
 * NvChat é uma configuração pronta do NVChat que permite funcionar como IDE por linha de comando
+* Neovim-Qt é uma versão visual do NeoVim para melhor integração com o KDE
 
 
 Instalação
@@ -72,5 +73,36 @@ Guia de instalação de uma fonte no sistema:
 Agora altere a fonte do seu terminal para q funciona
 
 
+## Neovim-Qt
 
+**Neovim-Qt** é uma interface gráfica (GUI) para o editor de texto Neovim. Ele oferece uma experiência gráfica, permitindo o uso de recursos do Neovim com suporte a mouse, fontes personalizadas, e integração visual, sem depender de um terminal.
 
+### Desabilitar a Tabline Gráfica
+
+Por padrão, o Neovim-Qt exibe uma tabline gráfica (barra de abas) na interface. Para usar a tabline nativa do Neovim (renderizada no terminal) e desativar a tabline gráfica do Qt, siga os passos abaixo:
+
+1. **Localização do Arquivo de Configuração**:
+   O arquivo de configuração do Neovim-Qt é armazenado em:
+   
+   - **Linux**: `~/.config/nvim-qt/nvim-qt.conf`
+
+2. **Desativando a Tabline Gráfica**:
+   
+   Abra o arquivo `nvim-qt.conf` e adicione a seguinte configuração:
+
+```ini
+   [General]
+   ext_tabline=false
+```
+
+### Configuração Inicial
+
+Crie o arquivo `~/.config/nvim/ginit.vim` e cole o seguinte conteúdo:
+
+```vim
+   " Habilitar o uso do mouse
+   set mouse=a
+
+   " Definir a fonte para o editor
+   set guifont=UbuntuMono\ Nerd\ Font:h10
+```
