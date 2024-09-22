@@ -5,13 +5,16 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
 
 -- Salva em qualquer momento
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
+-- Map Alt + 1 para abrir o diretório de configuração do Neovim
+map('n', '<A-1>', ':cd ~/.config/nvim/<CR>', { noremap = true, silent = true })
+map('n', '<A-0>', ':cd -<CR>', { noremap = true, silent = true })
+
 -- Salva Sessão, salva arquivos abertos e sai
-map({"n", "i", "v"}, "<C-q><C-q>", ":wa<CR>:qa<CR>", { desc = "Save session, save all and quit", silent = true })
+map({ "n", "i", "v" }, "<C-q><C-q>", ":wa<CR>:qa<CR>", { desc = "Save session, save all and quit", silent = true })
 
 -- Formatar arquivo atual
 map({ "n", "i" }, "<C-k>", function() vim.lsp.buf.format() end, { desc = "Format current file", silent = true })
@@ -23,15 +26,15 @@ map({ "n", "i" }, "<C-l>", ":bnext<CR>", { desc = "Next buffer", silent = true }
 local commentApi = require('Comment.api')
 local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
 
-vim.keymap.set({ "n", "i" }, '<C-_>', commentApi.toggle.linewise.current)
+map({ "n", "i" }, '<C-;>', commentApi.toggle.linewise.current)
 
-vim.keymap.set('x', '<C-_>', function()
+map('x', '<C-;>', function()
   vim.api.nvim_feedkeys(esc, 'nx', false)
   commentApi.toggle.linewise(vim.fn.visualmode())
 end)
 
 -- TODO: Revisar
-vim.keymap.set('x', '<leader>b', function()
+map('x', '<C-;>', function()
   vim.api.nvim_feedkeys(esc, 'nx', false)
   commentApi.toggle.blockwise(vim.fn.visualmode())
 end)
@@ -42,3 +45,10 @@ vim.api.nvim_set_keymap('n', '<A-Down>', '<C-w>j', { noremap = true, silent = tr
 vim.api.nvim_set_keymap('n', '<A-Up>', '<C-w>k', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<A-Right>', '<C-w>l', { noremap = true, silent = true })
 
+-- Depuração
+map('n', '<F5>', function() require('dap').continue() end, { noremap = true, silent = false })
+map('n', '<F6>', function() require("dapui").toggle() end, { noremap = true, silent = true })
+map('n', '<F7>', function() require('dap').toggle_breakpoint() end, { noremap = true, silent = true })
+map('n', '<F10>', function() require('dap').step_over() end, { noremap = true, silent = true })
+map('n', '<F11>', function() require('dap').step_into() end, { noremap = true, silent = true })
+map('n', '<F12>', function() require('dap').step_out() end, { noremap = true, silent = true })
