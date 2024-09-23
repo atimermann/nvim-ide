@@ -78,6 +78,21 @@ map("n", "<A-h>", builtin.help_tags, { desc = "Telescope help tags" })
 
 map({ "n", "i" }, "<A-r>", ":Glow<CR>", { noremap = true, silent = true, desc = "Render Markdown with Glow" })
 
+-- Adicionar as teclas para navegação de posição de cursor no mappings.lua
+map("n", "<C-A-Left>", "<C-o>", { noremap = true, silent = true })
+map("n", "<C-A-Right>", "<C-i>", { noremap = true, silent = true })
+
+-- Mapeamento para ir para a posição anterior no modo de inserção e voltar ao modo de inserção
+map("i", "<C-A-Left>", "<C-o><C-o>i", { noremap = true, silent = true })
+-- Mapeamento para ir para a próxima posição no modo de inserção e voltar ao modo de inserção
+map("i", "<C-A-Right>", "<C-o><C-i>i", { noremap = true, silent = true })
+
+-- Navegação entre blocos (t)
+map("n", "<C-A-Up>", "[m", { noremap = true, silent = true })
+map("n", "<C-A-Down>", "]m", { noremap = true, silent = true })
+
+-- Ajuda com comandos
+map("n", "<C-A-h>", ":WhichKey<CR>", { noremap = true })
 --------------------------------------------------------------------------
 -- TELA DE BOAS VINDAS
 --------------------------------------------------------------------------

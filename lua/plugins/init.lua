@@ -33,6 +33,7 @@ return {
     },
   },
   { "nvim-neotest/nvim-nio" },
+  { "folke/which-key.nvim", lazy = false },
   --  {
   --    "williamboman/mason.nvim",
   --    config = true,  -- Configura o Mason automaticamente
