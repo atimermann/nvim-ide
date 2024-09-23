@@ -1,0 +1,45 @@
+local M = {}
+
+function M.get_text()
+  return {
+    "Bemvindo ao NeoVim - Pressione F2 para abrir/fechar esta referência.",
+    "====================================================================",
+    "",
+    "Lista de atalhos:",
+    "",
+    "Comandos Gerais:",
+    "ctrl-N  - Abre lista de arquivos",
+    "Ctrl-S  - Salvar em qualquer momento",
+    "Ctrl-QQ - Salvar e sair (todos os arquivos e sessões)",
+    "Ctrl-H  - Formatar arquivo atual",
+    "Ctrl-L  - Próxima aba",
+    "Ctrl-;  - Comentar linha",
+    "",
+    "Movimento entre janelas:",
+    "Alt-Esq - Mover para janela à esquerda",
+    "Alt-Dir - Mover para janela à direita",
+    "Alt-Cima - Mover para janela acima",
+    "Alt-Baixo - Mover para janela abaixo",
+    "",
+    "Depuração:",
+    "F5   - Inicia depuração",
+    "F6   - Abre interface depuração",
+    "F7   - Adiciona Breakpoint",
+    "F10  - Step Over",
+    "F11  - Step Into",
+    "F12  - Step Out",
+    "",
+    "Atalhos do Telescope:",
+    "Alt-F   - Buscar arquivos",
+    "Alt-G   - Live grep",
+    "Alt-B   - Listar buffers",
+    "Alt-H   - Tags de ajuda",
+    "",
+    "Outros Atalhos:",
+    "Alt-1  - Abrir diretório de configuração do Neovim",
+    "Alt-0  - Voltar ao último diretório (Projeto)",
+    "Alt-R  - Renderiza markdown com Glow",
+  }
+end
+
+return M

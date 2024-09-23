@@ -1,9 +1,23 @@
 return {
-  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
-  { "nvim-tree.lua",         lazy = false },
+  {
+    "ellisonleao/glow.nvim",
+    config = function()
+      require("glow").setup {
+        width = 200,
+        border = "rounded",
+        width_ratio = 0.8, -- 90% da largura da janela do Neovim
+        height_ratio = 0.8, -- 90% da altura da janela do Neovim
+      }
+    end,
+    cmd = "Glow",
+  },
+
+  { "nvim-tree.lua", lazy = false },
+
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
+    event = { "BufReadPre", "BufNewFile" },
     opts = require "configs.conform",
   },
   {
@@ -13,14 +27,16 @@ return {
     end,
   },
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     opts = {
       -- add any options here
-    }
+    },
   },
-  { 'nvim-neotest/nvim-nio' }
+  { "nvim-neotest/nvim-nio" },
   --  {
-  --    'rmagatti/auto-session',
+  --    "williamboman/mason.nvim",
+  --    config = true,  -- Configura o Mason automaticamente
+  --  },
   --    lazy = false,
   --
   --    ---enables autocomplete for opts

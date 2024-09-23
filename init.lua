@@ -35,3 +35,17 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- Carrega o módulo "welcome_window"
+local welcome_window = require "welcome-window"
+
+-- Define o autocmd que chama a função open_welcome_window ao iniciar o Neovim
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Abre o NvimTree
+    vim.cmd "NvimTreeOpen"
+
+    -- Abre a janela de boas-vindas
+    welcome_window.open_welcome_window()
+  end,
+})
