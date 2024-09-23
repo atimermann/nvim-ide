@@ -16,6 +16,7 @@ function M.get_text()
     "Ctrl-L     - Próxima aba",
     "Ctrl-;     - Comentar linha",
     "Ctrl-Alt-h - Lista de atalhos (:WhichKey)",
+    "Ctrl-Alt-c - Copia o caminho do arquivo atual",
     "",
     "Movimento entre janelas:",
     "Alt-Esq - Mover para janela à esquerda",
