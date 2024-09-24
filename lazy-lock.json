@@ -11,11 +11,14 @@
   "conform.nvim": { "branch": "master", "commit": "1a99fdc1d3aa9ccdf3021e67982a679a8c5c740c" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "friendly-snippets": { "branch": "main", "commit": "00ba9dd3df89509f95437b8d595553707c46d5ea" },
+  "fzf-lua": { "branch": "main", "commit": "cf4f7e095f679856fa8fe74e1539fb60fa552bdd" },
   "gitsigns.nvim": { "branch": "main", "commit": "1ef74b546732f185d0f806860fa5404df7614f28" },
   "glow.nvim": { "branch": "main", "commit": "238070a686c1da3bccccf1079700eb4b5e19aea4" },
   "indent-blankline.nvim": { "branch": "master", "commit": "18603eb949eba08300799f64027af11ef922283f" },
   "lazy.nvim": { "branch": "main", "commit": "460e1cd8f24e364d54543a4b0e83f6f4ec1f65fb" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
+  "neovim-project": { "branch": "main", "commit": "f841cf801031e56f5193a52402f9cc488ea1a8e6" },
+  "neovim-session-manager": { "branch": "master", "commit": "cbaebd92dce84e9ba63cb07d3199e5a19b204c1a" },
   "nvim-autopairs": { "branch": "master", "commit": "f158dcb865c36f72c92358f87787dab2c272eaf3" },
   "nvim-bufdel": { "branch": "main", "commit": "523d58e94e7212fff3e05c247b962dc8f93bcfde" },
   "nvim-cmp": { "branch": "main", "commit": "ae644feb7b67bf1ce4260c231d1d4300b19c6f30" },
@@ -28,7 +31,7 @@
   "nvim-treesitter": { "branch": "master", "commit": "621f5901f0b3e762cc4c5ed0f9246cf1495193ad" },
   "nvim-web-devicons": { "branch": "master", "commit": "26220156aafb198b2de6a4cf80c1b120a3768da0" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
-  "telescope.nvim": { "branch": "master", "commit": "b324469959908c1c7434eb65d80e87895e6828f7" },
+  "telescope.nvim": { "branch": "master", "commit": "7011eaae0ac1afe036e30c95cf80200b8dc3f21a" },
   "ui": { "branch": "v2.5", "commit": "62f6ede07573a04e7c1a76ec48e7ce19b43d39f3" },
   "which-key.nvim": { "branch": "main", "commit": "fb070344402cfc662299d9914f5546d840a22126" }
 }

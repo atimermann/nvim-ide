@@ -50,3 +50,34 @@ vim.api.nvim_create_autocmd("VimEnter", {
     welcome_window.open_welcome_window()
   end,
 })
+
+-----------------------------------------------------------------------------------
+-- INICIALIZA ARQUIVO DE CONFIGURAÇÂO DO PROJEOT
+-----------------------------------------------------------------------------------
+
+-- Verifica se o arquivo ~/.projects.lua existe
+local projects_file = vim.fn.expand("~/.projects.lua")
+
+-- Função para escrever o conteúdo no arquivo, caso ele não exista
+local function create_projects_file()
+  local content = [[
+-- ~/.projects.lua
+return { 
+  "~/.config/nvm"
+}
+]]
+  -- Abre o arquivo para escrita e grava o conteúdo
+  local file = io.open(projects_file, "w")
+  if file then
+    file:write(content)
+    file:close()
+    print("Arquivo ~/.projects.lua criado com sucesso!")
+  else
+    print("Erro ao criar o arquivo ~/.projects.lua")
+  end
+end
+
+-- Verifica se o arquivo é legível (existe)
+if vim.fn.filereadable(projects_file) == 0 then
+  create_projects_file()
+end

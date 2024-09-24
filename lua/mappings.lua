@@ -5,6 +5,8 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+local welcome_window = require "welcome-window"
+
 map("n", ";", ":", { desc = "Entrar no modo de comando" })
 
 -- Salva em qualquer momento
@@ -88,27 +90,30 @@ map("n", "<A-g>", builtin.live_grep, { desc = "Telescope pesquisa ao vivo" })
 map("n", "<A-b>", builtin.buffers, { desc = "Telescope buffers" })
 map("n", "<A-h>", builtin.help_tags, { desc = "Telescope ajuda" })
 map({ "n", "i", "v" }, "<A-r>", function()
-    vim.cmd("stopinsert") -- Sai do modo de inserção para executar o comando corretamente
-    vim.cmd("Telescope lsp_references")
+  vim.cmd "stopinsert" -- Sai do modo de inserção para executar o comando corretamente
+  vim.cmd "Telescope lsp_references"
+end, opts)
+
+map({ "n", "i", "v" }, "<A-p>", function()
+  vim.cmd "stopinsert" -- Sai do modo de inserção para executar o comando corretamente
+  welcome_window.close_welcome_window()
+  vim.cmd "NeovimProjectHistory"
 end, opts)
 
 -- Mapear Alt+D para Go to Definition no modo normal, visual e inserção
 map({ "n", "i", "v" }, "<A-d>", function()
-  vim.cmd("stopinsert")  -- Sai do modo de inserção, se necessário
-  vim.lsp.buf.definition()  -- Vai para a definição
+  vim.cmd "stopinsert" -- Sai do modo de inserção, se necessário
+  vim.lsp.buf.definition() -- Vai para a definição
 end, opts)
 
 -- Mapear Alt+I para Go to Implementation no modo normal, visual e inserção
 map({ "n", "i", "v" }, "<A-i>", function()
-  vim.cmd("stopinsert")  -- Sai do modo de inserção, se necessário
-  vim.lsp.buf.implementation()  -- Vai para a implementação
+  vim.cmd "stopinsert" -- Sai do modo de inserção, se necessário
+  vim.lsp.buf.implementation() -- Vai para a implementação
 end, opts)
-
-
 
 -- Renderização
 map({ "n", "i" }, "<A-r><A-g>", ":Glow<CR>", { noremap = true, silent = true, desc = "Renderizar Markdown com Glow" })
-
 
 -- Adicionar as teclas para navegação de posição de cursor no mappings.lua
 map("n", "<C-A-Left>", "<C-o>", { noremap = true, silent = true, desc = "Voltar para posição anterior do cursor" })
@@ -169,7 +174,6 @@ vim.keymap.set(
   { noremap = true, silent = false, desc = "Copiar nome do arquivo atual para o clipboard" }
 )
 
-
 local map = vim.keymap.set
 
 -- Mapear Ctrl+A para selecionar tudo no modo normal, visual e de inserção
@@ -187,7 +191,6 @@ map("n", "<A-e>", ":BufDelOthers<CR>", { noremap = true, silent = true, desc = "
 -- -- Fechar todos os buffers
 map("n", "<C-A-e>", ":BufDelAll<CR>", { noremap = true, silent = true, desc = "Fechar todos os buffers" })
 
-
 --------------------------------------------------------------------------
 ---
 ---
@@ -196,6 +199,5 @@ map("n", "<C-A-e>", ":BufDelAll<CR>", { noremap = true, silent = true, desc = "F
 
 -- Mapeamento da tecla F2
 map("n", "<F2>", function()
-  local welcome_window = require "welcome-window"
   welcome_window.open_welcome_window()
 end, { noremap = true, silent = true, desc = "Abrir tela de boas-vindas" })
