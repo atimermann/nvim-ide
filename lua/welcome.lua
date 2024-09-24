@@ -35,6 +35,7 @@ function M.get_text()
     " Alt-B   - Listar buffers                                            Alt-RG  - Renderiza markdown com Glow",
     " Alt-H   - Tags de ajuda",
     " Alt-R   - Busca por Referência (Find Usages) (LSP)",
+    " Alt-O   - Lista Ultimos arquivos abertos",
     "",
     "Navegação:",
     " Ctrl-Alt-Up    - Método anterior",

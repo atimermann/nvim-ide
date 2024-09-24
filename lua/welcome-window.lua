@@ -1,14 +1,15 @@
+
 local M = {}
-local float_text = require "welcome"
+local floatText = require "welcome"
 
 -- Variáveis para armazenar o ID do buffer e da janela
-local win_id = nil
-local buf_id = nil
+local winId = nil
+local bufId = nil
 
 -- Função para abrir a janela flutuante
-function M.open_welcome_window()
+function M.openWelcomeWindow()
   -- Cria o buffer apenas se ele ainda não existir
-  buf_id = vim.api.nvim_create_buf(false, true)
+  bufId = vim.api.nvim_create_buf(false, true)
 
   local width = 200
   local height = 50
@@ -23,24 +24,24 @@ function M.open_welcome_window()
   }
 
   -- Carregar o texto a partir do arquivo
-  local content = float_text.get_text()
+  local content = floatText.get_text()
 
   -- Define o conteúdo da janela flutuante
-  vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, content)
+  vim.api.nvim_buf_set_lines(bufId, 0, -1, false, content)
 
   -- Abre a janela flutuante e armazena o ID
-  win_id = vim.api.nvim_open_win(buf_id, true, opts)
+  winId = vim.api.nvim_open_win(bufId, true, opts)
 
   -- Atalhos para fechar a janela
-  vim.api.nvim_buf_set_keymap(buf_id, "n", "<F2>", "<Cmd>bd!<CR>", { noremap = true, silent = true })
-  vim.api.nvim_buf_set_keymap(buf_id, "n", "<Esc>", "<Cmd>bd!<CR>", { noremap = true, silent = true })
-  vim.api.nvim_buf_set_keymap(buf_id, "n", "q", "<Cmd>bd!<CR>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(bufId, "n", "<F2>", "<Cmd>bd!<CR>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(bufId, "n", "<Esc>", "<Cmd>bd!<CR>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(bufId, "n", "q", "<Cmd>bd!<CR>", { noremap = true, silent = true })
 end
 
 -- Função para fechar a janela flutuante
-function M.close_welcome_window()
-  if win_id and vim.api.nvim_win_is_valid(win_id) then
-    vim.api.nvim_win_close(win_id, true)
+function M.closeWelcomeWindow()
+  if winId and vim.api.nvim_win_is_valid(winId) then
+    vim.api.nvim_win_close(winId, true)
   end
 end
 
