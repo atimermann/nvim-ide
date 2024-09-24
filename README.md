@@ -27,15 +27,15 @@ bold_italic_font        auto
 ### Criar atalho desktop
 
 Salve o arquivoa baixo em: `~/.local/share/applications/nvim-kitty.desktop`
-```desktop
+```
 [Desktop Entry]
-Name=Neovim IDE
-Comment=Edit files with Neovim in Kitty terminal
-Exec=kitty --hold sh -c "cd ~/.config/nvim && ~/bin/nvim"
-Icon=nvim
+Name=LogOS Project
+Comment=Abre o projeto LogOs no Neovim no Kitty Terminal
+Exec=kitty --hold env PATH=/home/logcomex/.nvm/versions/node/v20.16.0/bin:$PATH nvim
+Icon=/home/logcomex/bin/nvim.ico  # O ícone desejado
 Terminal=false
 Type=Application
-Categories=Utility;TextEditor;
+Categories=Development;TextEditor;
 
 ```
 

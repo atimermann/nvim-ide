@@ -22,7 +22,19 @@ O LSPConfig é utilizado para conectar o Neovim a servidores de linguagem que of
 
 Formatadores como php-cs-fixer, prettier, e black (para Python) não implementam o LSP, e por isso não podem ser configurados diretamente através do nvim-lspconfig.
 
-Phpactor é um LSP, mas não suporta formtter
+Phpactor é um LSP, mas não suporta formatter
+
+### Instalação de novos lsps
+
+É complexo encontrar o LSP certo para linguagem certa necessário buscar na internet. Por exemplo.
+
+Você pode encontrar a lista de LSP suportado pelo lspconfig aqui:
+
+`:help lspconfig-all`
+
+porem o nome listado ali não é o mesmo que você vai utilizar no Mason para instalar.
+Documente cada linguagem
+
 
 ## Mason
 
@@ -201,3 +213,70 @@ return options
 - Você pode utilizar `:LspInfo` com o arquivo alvo aberto para verificar se o LSP suporta formatter. Lembrando que phpactor não suporte , por isso usamos o conform.
 - Execute `:lua require("conform").format()` pra testar a formatação com o conform.
 
+# Instalando Suporte Typescript,Javascript,vue, nodejs, etc...
+
+Instale o nodejs e o typescript:
+
+`npm install -g typescript`
+
+No lspconfig use ts_ls para typescript e javascript, e volar para vue3
+
+`local servers = { "html", "cssls", "ts_ls", "volar"}`
+
+Use o Mason para instalar suporte com:
+
+```
+:MasonInstall typescript-language-server
+:MasonInstall vue-language-server
+```
+
+O volar exige o typescript instalado localmente, para que ele carregue global use o código abaixo (se o estiver usando nvm):
+
+
+```lua
+
+require("nvchad.configs.lspconfig").defaults()
+
+local lspconfig = require "lspconfig"
+local util = require "lspconfig.util"
+
+-- Função simples para pegar o caminho do TypeScript (local ou global)
+local function get_typescript_server_path(root_dir)
+      local global_ts = "~/.nvm/versions/node/v20.16.0/lib/node_modules/typescript/lib"
+      local found_ts = util.path.join(root_dir, "node_modules", "typescript", "lib")
+
+      if util.path.exists(found_ts) then
+            return found_ts
+      else
+        return global_ts
+      end
+    end
+
+local nvlsp = require "nvchad.configs.lspconfig"
+
+-- Lista de servidores a serem configurados (sem volar)
+local servers = { "html", "cssls", "phpactor", "ts_ls" }
+
+-- Configuração para cada LSP (sem volar)
+for _, lsp in ipairs(servers) do
+      lspconfig[lsp].setup {
+        on_attach = nvlsp.on_attach,
+        on_init = nvlsp.on_init,
+        capabilities = nvlsp.capabilities,
+      }
+end
+
+-- Configuração manual para volar
+lspconfig.volar.setup {
+      on_attach = nvlsp.on_attach,
+      on_init = nvlsp.on_init,
+      capabilities = nvlsp.capabilities,
+      init_options = {
+            typescript = {
+          -- Configura o tsdk para o caminho do TypeScript local ou global
+          tsdk = get_typescript_server_path(vim.fn.getcwd()),
+        },
+      },
+}
+
+```
