@@ -119,6 +119,17 @@ end, opts)
 map({ "n", "i", "v" }, "<A-p>", function()
   vim.cmd "stopinsert" -- Sai do modo de inserção para executar o comando corretamente
   welcomeWindow.closeWelcomeWindow()
+
+  -- Autocomando para reabrir o NvimTree quando o projeto for selecionado
+  vim.api.nvim_create_autocmd("WinClosed", {
+    once = true,
+    callback = function()
+      vim.defer_fn(function()
+        vim.cmd "NvimTreeOpen"
+      end, 250)
+    end,
+  })
+
   vim.cmd "NeovimProjectHistory"
 end, opts)
 
