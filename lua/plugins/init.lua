@@ -20,7 +20,17 @@ return {
     cmd = "Glow",
   },
 
-  { "nvim-tree.lua", lazy = false },
+  {
+    "nvim-tree.lua",
+    lazy = false,
+    config = function()
+      require("nvim-tree").setup {
+        filters = {
+          dotfiles = false,
+        },
+      }
+    end,
+  },
 
   {
     "stevearc/conform.nvim",

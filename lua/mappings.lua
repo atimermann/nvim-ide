@@ -3,8 +3,6 @@ require "nvchad.mappings"
 -- add yours here
 
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
-
 local welcomeWindow = require "welcome-window"
 
 map("n", ";", ":", { desc = "Entrar no modo de comando" })
@@ -63,22 +61,22 @@ vim.api.nvim_set_keymap(
 -- Depuração
 map("n", "<F5>", function()
   require("dap").continue()
-end, { noremap = true, silent = false, desc = "Inicia Depurador / continue" })
+end, { noremap = true, silent = false, desc = "Iniciar depurador / continuar" })
 map("n", "<F6>", function()
   require("dapui").toggle()
-end, { noremap = true, silent = true, desc = "Interface de depuração" })
+end, { noremap = true, silent = true, desc = "Alternar interface de depuração" })
 map("n", "<F7>", function()
   require("dap").toggle_breakpoint()
 end, { noremap = true, silent = true, desc = "Alternar breakpoint" })
 map("n", "<F10>", function()
   require("dap").step_over()
-end, { noremap = true, silent = true, desc = "step over" })
+end, { noremap = true, silent = true, desc = "Step over" })
 map("n", "<F11>", function()
   require("dap").step_into()
-end, { noremap = true, silent = true, desc = "step into" })
+end, { noremap = true, silent = true, desc = "Step into" })
 map("n", "<F12>", function()
   require("dap").step_out()
-end, { noremap = true, silent = true, desc = "step out" })
+end, { noremap = true, silent = true, desc = "Step out" })
 
 --------------------------------------------------------------------------------
 -- Atalhos para o Telescope
@@ -108,13 +106,13 @@ end, { desc = "Telescope ajuda" })
 map("n", "<A-o>", function()
   welcomeWindow.closeWelcomeWindow()
   builtin.oldfiles()
-end, { desc = "Telescope ultimos arquivos" })
+end, { desc = "Telescope últimos arquivos" })
 
 map({ "n", "i", "v" }, "<A-r>", function()
   vim.cmd "stopinsert" -- Sai do modo de inserção para executar o comando corretamente
   welcomeWindow.closeWelcomeWindow()
   vim.cmd "Telescope lsp_references"
-end, opts)
+end, { desc = "Telescope referências LSP" })
 
 map({ "n", "i", "v" }, "<A-p>", function()
   vim.cmd "stopinsert" -- Sai do modo de inserção para executar o comando corretamente
@@ -131,7 +129,15 @@ map({ "n", "i", "v" }, "<A-p>", function()
   })
 
   vim.cmd "NeovimProjectHistory"
-end, opts)
+end, { desc = "Telescope histórico de projetos" })
+
+-- Novo atalho: Alt + S para buscar símbolos no arquivo atual (incluindo funções)
+map({ "n", "i", "v" }, "<A-s>", function()
+  vim.cmd "stopinsert" -- Sai do modo de inserção para executar o comando corretamente
+  welcomeWindow.closeWelcomeWindow()
+
+  builtin.lsp_document_symbols()
+end, { desc = "Telescope buscar funções no arquivo" })
 
 ---------------------------------------------------------------------------------
 
@@ -139,13 +145,18 @@ end, opts)
 map({ "n", "i", "v" }, "<A-d>", function()
   vim.cmd "stopinsert" -- Sai do modo de inserção, se necessário
   vim.lsp.buf.definition() -- Vai para a definição
-end, opts)
+end, { desc = "Ir para definição LSP" })
 
 -- Mapear Alt+I para Go to Implementation no modo normal, visual e inserção
 map({ "n", "i", "v" }, "<A-i>", function()
   vim.cmd "stopinsert" -- Sai do modo de inserção, se necessário
   vim.lsp.buf.implementation() -- Vai para a implementação
-end, opts)
+end, { desc = "Ir para implementação LSP" })
+
+map({ "i" }, "<C-b>", function()
+  vim.cmd "stopinsert" -- Sai do modo de inserção, se necessário
+  vim.lsp.buf.definition() -- Vai para a implementação
+end, { desc = "Ir para definição LSP no modo de inserção" })
 
 -- Renderização
 map({ "n", "i" }, "<A-r><A-g>", ":Glow<CR>", { noremap = true, silent = true, desc = "Renderizar Markdown com Glow" })
@@ -174,7 +185,7 @@ map("n", "<C-A-Up>", "[m", { noremap = true, silent = true, desc = "Navegar para
 map("n", "<C-A-Down>", "]m", { noremap = true, silent = true, desc = "Navegar para próximo bloco" })
 
 -- Ajuda com comandos
-map("n", "<C-A-h>", ":WhichKey<CR>", { noremap = true, desc = "Abrir WhichKey" })
+map("n", "<C-A-h>", ":WhichKey<CR>", { noremap = true, silent = true, desc = "Abrir WhichKey" })
 
 -- Mapeia Ctrl+C para copiar a seleção visual para o clipboard do sistema
 map(
@@ -208,8 +219,6 @@ vim.keymap.set(
   "<Esc>:let @+ = expand('%')<CR>gv",
   { noremap = true, silent = false, desc = "Copiar nome do arquivo atual para o clipboard" }
 )
-
-local map = vim.keymap.set
 
 -- Mapear Ctrl+A para selecionar tudo no modo normal, visual e de inserção
 map({ "n", "i", "v" }, "<C-a>", "<ESC>ggVG", { noremap = true, silent = true, desc = "Selecionar tudo" })

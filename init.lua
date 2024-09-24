@@ -81,3 +81,7 @@ end
 if vim.fn.filereadable(projects_file) == 0 then
   create_projects_file()
 end
+
+
+-- Remove auto comment
+vim.cmd [[autocmd FileType * setlocal formatoptions-=cro]]
