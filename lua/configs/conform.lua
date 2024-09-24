@@ -19,10 +19,10 @@ local options = {
   },
   notify_on_error = true,
   notify_no_formatters = true,
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 500,
-    lsp_fallback = true,
+  -- Desabilita o format on save
+  format_on_save = false,
+    default_format_opts = {
+    lsp_format = "fallback",
   },
 }
 
