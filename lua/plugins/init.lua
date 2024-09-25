@@ -131,10 +131,21 @@ return {
       -- Carregar o cmp e o mapeamento já existente
       local cmp = require "cmp"
 
+      -- opts.completion = {
+      -- autocomplete = true, -- Desabilita o popup automático
+      -- }
+
       -- Adicionar ou sobrescrever o mapeamento para <Up> e <Down>
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
         ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<CR>"] = cmp.mapping(function(fallback)
+          fallback() -- Deixa o Enter funcionar normalmente quando não houver popup
+        end, { "i", "s" }), -- Sobrescreve o Enter para evitar que ele confirme o item do autocomplete
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          fallback() -- Deixa o Enter funcionar normalmente quando não houver popup
+        end, { "i", "s" }), -- Sobrescreve o Enter para evitar que ele confirme o item do autocomplete
+        ["<C-Enter>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
         ["<PageDown>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             for _ = 1, 10 do

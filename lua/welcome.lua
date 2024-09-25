@@ -21,6 +21,7 @@ function M.get_text()
     " Ctrl-Alt-H - Exibe lista de atalhos (WhichKey)",
     " Ctrl-Alt-C - Copia o caminho do arquivo atual",
     " Ctrl-A     - Seleciona todo o texto",
+    " Ctrl-D     - Deleta linha toda do cursor (i)",
     "",
     "Movimento entre janelas:                                            Depuração:",
     " Alt-Esq    - Mover para janela à esquerda                           F5   - Inicia depuração",
