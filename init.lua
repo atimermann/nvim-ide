@@ -37,6 +37,7 @@ vim.schedule(function()
   require "mappings"
   require "mappings.editing"
   require "mappings.saveload"
+  require "mappings.telescope"
 end)
 
 -- Carrega o módulo "welcome_window"
@@ -65,7 +66,7 @@ local function create_projects_file()
   local content = [[
 -- ~/.projects.lua
 return { 
-  "~/.config/nvm"
+  "~/.config/nvim"
 }
 ]]
   -- Abre o arquivo para escrita e grava o conteúdo

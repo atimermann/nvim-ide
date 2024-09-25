@@ -43,7 +43,7 @@ function M.get_text()
     " Alt-H   - Tags de ajuda                                             Ctrl-Alt-Dir   - Próxima mudança recente",
     " Alt-R   - Busca por Referência (Find Usages) (LSP)                  [d ou ]d       - Navega entre problemas (diagnóstico)",
     " Alt-O   - Lista Ultimos arquivos abertos                            Alt-D          - Navega até a definição (LSP)",
-    "                                                                     Alt-I          - Navega até a implementação (LSP)",
+    " Alt-T   - Lista de TODOs do projeto                                 Alt-I          - Navega até a implementação (LSP)",
     "",
     "Gerenciamento de Buffers:",
     " Alt-W        - Fechar buffer atual",
