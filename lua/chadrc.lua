@@ -13,6 +13,22 @@ M.base46 = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
   -- },
+  hl_override = {
+    Visual = {
+      bg = "grey_fg2",
+      fg = "white",
+    },
+    -- Deixar os comentários mais claros
+    Comment = {
+      fg = "#666666", -- Cor mais clara para os comentários
+      italic = true, -- Aplicar itálico aos comentários (opcional)
+    },
+    -- Também pode ajustar o destaque de comentários em sintaxes específicas, como:
+    ["@comment"] = {
+      fg = "#666666", -- Mesma cor mais clara
+      italic = true,
+    },
+  },
 }
 
 return M

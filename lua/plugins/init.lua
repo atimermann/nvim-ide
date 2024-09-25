@@ -19,17 +19,16 @@ return {
     end,
     cmd = "Glow",
   },
-
   {
     "nvim-tree.lua",
     lazy = false,
-    config = function()
+    --[[ config = function()
       require("nvim-tree").setup {
         filters = {
           dotfiles = false,
         },
       }
-    end,
+    end, ]]
   },
 
   {
@@ -126,7 +125,22 @@ return {
     lazy = false,
     priority = 100,
   },
+  {
+    "hrsh7th/nvim-cmp",
+    config = function(_, opts)
+      -- Carregar o cmp e o mapeamento já existente
+      local cmp = require "cmp"
 
+      -- Adicionar ou sobrescrever o mapeamento para <Up> e <Down>
+      opts.mapping = vim.tbl_extend("force", opts.mapping, {
+        ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+        ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+      })
+
+      -- Aplicar as configurações do cmp com os novos mapeamentos
+      cmp.setup(opts)
+    end,
+  },
   --  {
   --    "williamboman/mason.nvim",
   --    config = true,  -- Configura o Mason automaticamente

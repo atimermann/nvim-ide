@@ -107,7 +107,6 @@ map("n", "<A-o>", function()
   welcomeWindow.closeWelcomeWindow()
   builtin.oldfiles()
 end, { desc = "Telescope últimos arquivos" })
-
 map({ "n", "i", "v" }, "<A-r>", function()
   vim.cmd "stopinsert" -- Sai do modo de inserção para executar o comando corretamente
   welcomeWindow.closeWelcomeWindow()
@@ -191,7 +190,7 @@ map("n", "<C-A-h>", ":WhichKey<CR>", { noremap = true, silent = true, desc = "Ab
 map(
   "v",
   "<C-c>",
-  '"+y',
+  '"+y<esc>a',
   { noremap = true, silent = true, desc = "Copiar seleção visual para o clipboard do sistema" }
 )
 
