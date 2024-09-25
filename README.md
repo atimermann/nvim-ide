@@ -3,6 +3,10 @@
 ## Instalação
 
 ```sh
+
+# Dependencia Telescope 
+sudo apt install ripgrep
+
 sudo apt install kitty -y
 ```
 

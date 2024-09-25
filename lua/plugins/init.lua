@@ -135,6 +135,24 @@ return {
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
         ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<PageDown>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            for _ = 1, 10 do
+              cmp.select_next_item { behavior = cmp.SelectBehavior.Insert }
+            end
+          else
+            fallback()
+          end
+        end),
+        ["<PageUp>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            for _ = 1, 10 do
+              cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
+            end
+          else
+            fallback()
+          end
+        end),
       })
 
       -- Aplicar as configurações do cmp com os novos mapeamentos
@@ -160,7 +178,7 @@ return {
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {
-  -- 		ensure_installed = {
+  -- 	largura	ensure_installed = {
   -- 			"vim", "lua", "vimdoc",
   --      "html", "css"
   -- 		},

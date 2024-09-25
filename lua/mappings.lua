@@ -7,9 +7,6 @@ local welcomeWindow = require "welcome-window"
 
 map("n", ";", ":", { desc = "Entrar no modo de comando" })
 
--- Salva em qualquer momento
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Salvar arquivo" })
-
 -- Map Alt + 1 para abrir o diretório de configuração do Neovim
 map(
   "n",
@@ -19,8 +16,6 @@ map(
 )
 map("n", "<A-0>", ":cd -<CR>", { noremap = true, silent = true, desc = "Voltar ao diretório anterior" })
 
--- Salva Sessão, salva arquivos abertos e sai
-map({ "n", "i", "v" }, "<C-q><C-q>", ":wa<CR>:qa<CR>", { desc = "Salvar sessão, salvar tudo e sair", silent = true })
 
 -- Formatar arquivo atual
 map({ "n", "i" }, "<C-k>", function()

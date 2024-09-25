@@ -36,6 +36,7 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
   require "mappings.editing"
+  require "mappings.saveload"
 end)
 
 -- Carrega o módulo "welcome_window"
