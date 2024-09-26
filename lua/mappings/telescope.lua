@@ -66,7 +66,7 @@ map({ "n", "i", "v" }, "<A-s>", function()
   builtin.lsp_document_symbols()
 end, { desc = "Telescope buscar funções no arquivo" })
 
-map({ "n", "i", "v" }, "<A-t>", function()
+map({ "n", "i" }, "<A-t>", function()
   vim.cmd "stopinsert"
   welcomeWindow.closeWelcomeWindow()
   vim.cmd "TodoTelescope"

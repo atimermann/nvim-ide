@@ -128,7 +128,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     config = function(_, opts)
-      -- Carregar o cmp e o mapeamento já existente
+      -- Load cmp and existing mapping
       local cmp = require "cmp"
 
       -- opts.completion = {
@@ -180,6 +180,19 @@ return {
       -- refer to the configuration section below
     },
   },
+  { "rest-nvim/rest.nvim", lazy = true, cmd = "Rest" },
+  {
+    "potamides/pantran.nvim",
+    lazy = false,
+    config = function()
+      require("pantran").setup {
+        default_engine = "google",
+        command = {
+          default_mode = "replace",
+        },
+      }
+    end,
+  },
   --  {
   --    "williamboman/mason.nvim",
   --    config = true,  -- Configura o Mason automaticamente
@@ -206,6 +219,7 @@ return {
         "html",
         "css",
         "prisma",
+        "http",
       },
     },
   },

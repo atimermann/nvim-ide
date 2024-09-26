@@ -177,3 +177,33 @@ map("n", "<C-A-e>", ":BufDelAll<CR>", { noremap = true, silent = true, desc = "F
 map("n", "<F2>", function()
   welcomeWindow.openWelcomeWindow()
 end, { noremap = true, silent = true, desc = "Abrir tela de boas-vindas" })
+
+--------------------------------------------------------------------------
+--- Rest.nvim
+--------------------------------------------------------------------------
+
+-- Executa solicitação HTTP sob o cursor (Rest run)
+map(
+  { "n", "i" },
+  "<A-x>",
+  "<esc>:Rest run<CR>",
+  { noremap = true, silent = true, desc = "Executar requisição sob o cursor" }
+)
+
+-- Executar a última requisição (Rest last)
+map(
+  { "n", "i" },
+  "<A-l>",
+  "<esc>:Rest last<CR>",
+  { noremap = true, silent = true, desc = "Executar a última requisição" }
+)
+
+--------------------------------------------------------------------------
+--- Patron.nvim (translate)
+--------------------------------------------------------------------------
+map("v", "<A-t>", ":Pantran mode=replace<CR>", { noremap = true, silent = true, desc = "Traduz texto selecionado" })
+
+map({ "n", "i", "v" }, "<A-y>", function()
+  vim.cmd "stopinsert" -- Sai do modo de inserção, se necessário
+  vim.cmd ":Pantran mode=interactive"
+end, { desc = "Abre janela de tradução" })
