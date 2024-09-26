@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 -----------------------------------------------------------------------------------
 
 -- Verifica se o arquivo ~/.projects.lua existe
-local projects_file = vim.fn.expand("~/.projects.lua")
+local projects_file = vim.fn.expand "~/.projects.lua"
 
 -- Função para escrever o conteúdo no arquivo, caso ele não exista
 local function create_projects_file()
@@ -74,9 +74,9 @@ return {
   if file then
     file:write(content)
     file:close()
-    print("Arquivo ~/.projects.lua criado com sucesso!")
+    print "Arquivo ~/.projects.lua criado com sucesso!"
   else
-    print("Erro ao criar o arquivo ~/.projects.lua")
+    print "Erro ao criar o arquivo ~/.projects.lua"
   end
 end
 
@@ -84,7 +84,6 @@ end
 if vim.fn.filereadable(projects_file) == 0 then
   create_projects_file()
 end
-
 
 -- Remove auto comment
 vim.cmd [[autocmd FileType * setlocal formatoptions-=cro]]
