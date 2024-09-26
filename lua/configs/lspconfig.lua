@@ -19,7 +19,7 @@ end
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- Lista de servidores a serem configurados (sem volar)
-local servers = { "html", "cssls", "phpactor", "ts_ls" }
+local servers = { "html", "cssls", "phpactor", "ts_ls", "prismals" }
 
 -- Configuração para cada LSP (sem volar)
 for _, lsp in ipairs(servers) do

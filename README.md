@@ -6,10 +6,8 @@
 
 # Dependencia Telescope 
 sudo apt install ripgrep
-
 sudo apt install kitty -y
 ```
-
 
 ## Configuração
 
@@ -33,21 +31,14 @@ bold_italic_font        auto
 Salve o arquivoa baixo em: `~/.local/share/applications/nvim-kitty.desktop`
 ```
 [Desktop Entry]
-Name=LogOS Project
-Comment=Abre o projeto LogOs no Neovim no Kitty Terminal
-Exec=kitty --hold env PATH=/home/logcomex/.nvm/versions/node/v20.16.0/bin:$PATH nvim
-Icon=/home/logcomex/bin/nvim.ico  # O ícone desejado
-Terminal=false
-Type=Application
-Categories=Development;TextEditor;
-
+<!-- TODO:  -->
 ```
 
 ### Criar lista de projetos
-
 Defina uma lista de proetos em `~/.project.lua` para carregar automaticamente com Alt-p
  
 ## Plugins / Funcionalidades
 
 - [Depuração](./docs/debug.md) 
-- [LSP/Formatter](./docs/lsp.md)
+- [Adicionando suporte a novas linguagens](./docs/language.md)
+- [LSP/Formatter](./docs/lsp.m)
