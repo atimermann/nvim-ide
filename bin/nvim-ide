@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Adiciona diretórios ao PATH
+export PATH=$PATH:$HOME/bin:$HOME/.config/nvim/bin
+
+##############################################################
+# Verifica se o NVM/NODEJS está instalado
+#############################################################
+export NVM_DIR="$HOME/.nvm"
+if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+  echo "Erro: NVM não está instalado. Instale o NVM primeiro."
+  exit 1
+fi
+
+# Carrega o NVM
+. "$NVM_DIR/nvm.sh"
+
+# Verifica se há alguma versão do Node.js instalada via NVM
+if ! nvm current | grep -q 'v'; then
+  echo "Erro: Nenhuma versão do Node.js está instalada via NVM."
+  exit 1
+fi
+
+#############################################################
+# Verifica dependencias...
+#############################################################o
+echo "Verificando dependências..."
+if ! npm list -g typescript >/dev/null 2>&1; then
+  echo "TypeScript não encontrado. Instalando globalmente..."
+  npm install -g typescript
+fi
+
+# Executa o Neovim
+$HOME/.config/nvim/bin/nvim
+

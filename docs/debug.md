@@ -1,5 +1,14 @@
 # Instalando e Configurando um depurador no Neovim
 
+**NOTAS:** 
+- O Mason instala debuggers, simplificando o processo, revisar a documentação abaixo para configurar o PHP com Mason (não precisa do plugin do vscode)
+- O depurador do nodejs foi instalado via Mason e funcionou perfeitamente, enquanto do vs code não. veja configurações.
+- Referência de configuração em:
+    - https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#node-debug2
+    - https://github-wiki-see.page/m/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
+
+
+
 Vamos utilizar os seguintes plugins para habilitar depuração no neovim:
 - "mfussenegger/nvim-dap"
 - "rcarriga/nvim-dap-ui"
@@ -48,8 +57,8 @@ No arquivo debug.lua adicione:
       local dap = require("dap")
       dap.adapters.php = {
         type = "executable",
-        command = "/home/logcomex/.nvm/versions/node/v20.16.0/bin/node", -- Usa node.js para rodar o adaptador
-        args = { "/home/logcomex/.config/nvim/vscode-php-debug/out/phpDebug.js" }
+        command = "node", -- Usa node.js para rodar o adaptador ATENÇÂO, VERIFICAR SE O NODE está acessivel pelo nvim, se não por caminho completo
+        args = { "<HOME_PATH>/.config/nvim/vscode-php-debug/out/phpDebug.js" } -- verificar atalho para home
       }
       dap.configurations.php = {
         {

@@ -1,6 +1,9 @@
+-- Configurações VIM
+
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 vim.opt.swapfile = false
+vim.opt.shell = "/bin/bash"
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -55,7 +58,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 -----------------------------------------------------------------------------------
--- INICIALIZA ARQUIVO DE CONFIGURAÇÂO DO PROJEOT
+-- INICIALIZA ARQUIVO DE CONFIGURAÇÂO DO PROJETO
 -----------------------------------------------------------------------------------
 
 -- Verifica se o arquivo ~/.projects.lua existe
@@ -87,3 +90,6 @@ end
 
 -- Remove auto comment
 vim.cmd [[autocmd FileType * setlocal formatoptions-=cro]]
+
+
+require("telescope").load_extension('find_template')

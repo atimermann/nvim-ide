@@ -1,8 +1,24 @@
 local project_paths = {}
 local project_list_file = vim.fn.expand "~/.projects.lua"
+local nvim_tree_file_template = require "../nvim_tree_file_template"
 
 if vim.fn.filereadable(project_list_file) == 1 then
   project_paths = dofile(project_list_file)
+end
+
+local function my_on_attach(bufnr)
+  -- TODO: Não funcionou
+  local api = require "nvim-tree.api"
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- custom mappings
+  --vim.keymap.set("n", "ç", print('ok'), opts('Nem file by template'))
 end
 
 return {
@@ -22,15 +38,12 @@ return {
   {
     "nvim-tree.lua",
     lazy = false,
-    --[[ config = function()
-      require("nvim-tree").setup {
-        filters = {
-          dotfiles = false,
-        },
-      }
-    end, ]]
+    require("nvim-tree").setup {
+      ---
+      --- on_attach = my_on_attach,
+      ---
+    },
   },
-
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
@@ -49,6 +62,7 @@ return {
       -- add any options here
     },
   },
+  --  { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "nvim-neotest/nvim-nio" },
   { "folke/which-key.nvim", lazy = false },
   {
@@ -139,13 +153,13 @@ return {
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
         ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-        ["<CR>"] = cmp.mapping(function(fallback)
-          fallback() -- Deixa o Enter funcionar normalmente quando não houver popup
-        end, { "i", "s" }), -- Sobrescreve o Enter para evitar que ele confirme o item do autocomplete
+        -- ["<CR>"] = cmp.mapping(function(fallback)
+        -- fallback() -- Deixa o Enter funcionar normalmente quando não houver popup
+        -- end, { "i", "s" }), -- Sobrescreve o Enter para evitar que ele confirme o item do autocomplete
         ["<Tab>"] = cmp.mapping(function(fallback)
           fallback() -- Deixa o Enter funcionar normalmente quando não houver popup
         end, { "i", "s" }), -- Sobrescreve o Enter para evitar que ele confirme o item do autocomplete
-        ["<C-Enter>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+        -- ["<C-Enter>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
         ["<PageDown>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             for _ = 1, 10 do
@@ -164,6 +178,14 @@ return {
             fallback()
           end
         end),
+        -- Mapeando Esc para cancelar o autocomplete e fechar o popup
+        ["<Esc>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.abort() -- Fecha o menu e cancela a seleção
+          else
+            fallback() -- Se o autocomplete não estiver visível, o comportamento padrão do Esc
+          end
+        end, { "i" }),
       })
 
       -- Aplicar as configurações do cmp com os novos mapeamentos
@@ -222,5 +244,17 @@ return {
         "http",
       },
     },
+  },
+  {
+    "glepnir/template.nvim",
+    cmd = { "Template", "TemProject" },
+    config = function()
+      require("template").setup {
+        -- config in there
+        temp_dir = "~/.config/nvim/templates",
+        author = "André Timermann",
+        email = "andre@timermann.com.br",
+      }
+    end,
   },
 }

@@ -72,4 +72,9 @@ map({ "n", "i" }, "<A-t>", function()
   vim.cmd "TodoTelescope"
 end, { desc = "Telescope referências LSP" })
 
+map({ "n", "i" }, "<A-n>", function()
+    vim.cmd "stopinsert"
+    welcomeWindow.closeWelcomeWindow()
+    vim.cmd "Telescope find_template type=insert"
+end, { desc = "Telescope referências LSP" })
 ---------------------------------------------------------------------------------
