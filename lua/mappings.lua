@@ -101,14 +101,14 @@ map("n", "<C-A-Right>", "<C-i>", { noremap = true, silent = true, desc = "Avanç
 map(
   "i",
   "<C-A-Left>",
-  "<C-o><C-o>i",
+  "<C-o><C-o>",
   { noremap = true, silent = true, desc = "Voltar para posição anterior no modo de inserção" }
 )
 -- Mapeamento para ir para a próxima posição no modo de inserção e voltar ao modo de inserção
 map(
   "i",
   "<C-A-Right>",
-  "<C-o><C-i>i",
+  "<C-o><C-i>",
   { noremap = true, silent = true, desc = "Avançar para próxima posição no modo de inserção" }
 )
 

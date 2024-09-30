@@ -93,3 +93,7 @@ vim.cmd [[autocmd FileType * setlocal formatoptions-=cro]]
 
 
 require("telescope").load_extension('find_template')
+
+
+-- Customiza Layout do NvimTree (Fundo mais claro)
+vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = "#2e3440" })

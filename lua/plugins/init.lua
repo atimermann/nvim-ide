@@ -38,11 +38,11 @@ return {
   {
     "nvim-tree.lua",
     lazy = false,
-    require("nvim-tree").setup {
+    -- require("nvim-tree").setup {
       ---
       --- on_attach = my_on_attach,
       ---
-    },
+    -- },
   },
   {
     "stevearc/conform.nvim",
