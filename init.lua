@@ -41,6 +41,7 @@ vim.schedule(function()
   require "mappings.editing"
   require "mappings.saveload"
   require "mappings.telescope"
+  require "mappings.debug"
 end)
 
 -- Carrega o módulo "welcome_window"
@@ -53,7 +54,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.cmd "NvimTreeOpen"
 
     -- Abre a janela de boas-vindas
-    welcomeWindow.openWelcomeWindow()
+    -- welcomeWindow.openWelcomeWindow()
   end,
 })
 

@@ -45,6 +45,16 @@ return {
     -- },
   },
   {
+    "nvim-tree/nvim-tree.lua",
+    requires = {
+      "nvim-tree/nvim-web-devicons", -- ícones de dependência
+    },
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" }, -- Comandos que carregam o plugin
+    config = function()
+      require("nvim-tree").setup {}
+    end,
+  },
+  {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
     event = { "BufReadPre", "BufNewFile" },

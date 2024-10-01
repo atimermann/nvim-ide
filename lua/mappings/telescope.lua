@@ -19,8 +19,13 @@ end, { desc = "Telescope encontrar arquivos" })
 
 map({ "n", "i", "v" }, "<A-g>", function()
   welcomeWindow.closeWelcomeWindow()
+  builtin.current_buffer_fuzzy_find()
+end, { desc = "Telescope pesquisa texto no buffer atual" })
+
+map({ "n", "i", "v" }, "<A-s-g>", function()
+  welcomeWindow.closeWelcomeWindow()
   builtin.live_grep()
-end, { desc = "Telescope pesquisa ao vivo" })
+end, { desc = "Telescope pesquisa texto no projeto." })
 
 map({ "n", "i", "v" }, "<A-b>", function()
   welcomeWindow.closeWelcomeWindow()

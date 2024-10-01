@@ -53,26 +53,6 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true, desc = "Mover para janela à direita" }
 )
 
--- Depuração
-map("n", "<F5>", function()
-  require("dap").continue()
-end, { noremap = true, silent = false, desc = "Iniciar depurador / continuar" })
-map("n", "<F6>", function()
-  require("dapui").toggle()
-end, { noremap = true, silent = true, desc = "Alternar interface de depuração" })
-map("n", "<F7>", function()
-  require("dap").toggle_breakpoint()
-end, { noremap = true, silent = true, desc = "Alternar breakpoint" })
-map("n", "<F10>", function()
-  require("dap").step_over()
-end, { noremap = true, silent = true, desc = "Step over" })
-map("n", "<F11>", function()
-  require("dap").step_into()
-end, { noremap = true, silent = true, desc = "Step into" })
-map("n", "<F12>", function()
-  require("dap").step_out()
-end, { noremap = true, silent = true, desc = "Step out" })
-
 -- Mapear Alt+D para Go to Definition no modo normal, visual e inserção
 map({ "n", "i", "v" }, "<A-d>", function()
   vim.cmd "stopinsert" -- Sai do modo de inserção, se necessário
@@ -174,7 +154,7 @@ map("n", "<C-A-e>", ":BufDelAll<CR>", { noremap = true, silent = true, desc = "F
 --------------------------------------------------------------------------
 
 -- Mapeamento da tecla F2
-map("n", "<F2>", function()
+map({"i", "n"}, "<F2>", function()
   welcomeWindow.openWelcomeWindow()
 end, { noremap = true, silent = true, desc = "Abrir tela de boas-vindas" })
 

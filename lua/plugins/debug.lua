@@ -52,7 +52,7 @@ return {
       dap.adapters.php = {
         type = "executable",
         command = "node", -- verifique se funciona assim, se não por caminho completo
-        args = { os.getenv "HOME" .. ".config/nvim/vscode-php-debug/out/phpDebug.js" },
+        args = { os.getenv "HOME" .. "/.config/nvim/vscode-php-debug/out/phpDebug.js" },
       }
       dap.configurations.php = {
         {
